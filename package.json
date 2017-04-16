@@ -1,0 +1,19 @@
+{
+  "name": "mackerel-client-node",
+  "version": "0.0.1",
+  "description": "mackerel-client-node is an unofficial client for mackerel.io",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "ariarijp <takuya.arita@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "clone": "^2.1.1",
+    "node-fetch": "^1.6.3"
+  },
+  "devDependencies": {
+    "jest": "^19.0.2",
+    "moment": "^2.18.1"
+  }
+}
