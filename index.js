@@ -1,7 +1,9 @@
-require('es6-promise').polyfill()
-require('isomorphic-fetch')
 const clone = require('clone')
 const url = require('url')
+if (global.fetch === undefined) {
+  require('es6-promise').polyfill()
+  require('isomorphic-fetch')
+}
 
 class MackerelClient {
   /**
