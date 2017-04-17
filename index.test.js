@@ -46,6 +46,11 @@ test('getLatestMetrics', () => {
   })
 })
 
+test('getMonitors', () => {
+  return client.getMonitors()
+  .then(monitors => expect(monitors).toBeTruthy())
+})
+
 test('getAlerts', () => {
   return client.getAlerts()
   .then(alerts => expect(alerts).toBeTruthy())
