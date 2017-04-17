@@ -45,3 +45,8 @@ test('getLatestMetrics', () => {
     .then(metrics => expect(metrics).toBeTruthy())
   })
 })
+
+test('getOrganization', () => {
+  return client.getOrganization()
+  .then(org => expect(org).toBeTruthy())
+})

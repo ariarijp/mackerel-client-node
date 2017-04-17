@@ -125,6 +125,18 @@ class MackerelClient {
       .then(body => JSON.parse(body))
       .then(json => json.tsdbLatest)
   }
+
+  /**
+   * @return {Promise}
+   */
+  getOrganization () {
+    let urlObj = clone(this.origin)
+    urlObj.pathname = '/api/v0/org'
+
+    return fetch(url.format(urlObj), {headers: this.headers})
+      .then(res => res.text())
+      .then(body => JSON.parse(body))
+  }
 }
 
 module.exports = MackerelClient
