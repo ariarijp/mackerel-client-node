@@ -1,5 +1,6 @@
 const clone = require('clone')
 const url = require('url')
+const util = require('util')
 if (global.fetch === undefined) {
   require('es6-promise').polyfill()
   require('isomorphic-fetch')
@@ -39,7 +40,8 @@ class MackerelClient {
    */
   getHost (hostId) {
     let urlObj = clone(this.origin)
-    urlObj.pathname = '/api/v0/hosts/' + hostId
+    urlObj.pathname = util.format('/api/v0/hosts/%s', hostId)
+
     return fetch(url.format(urlObj), {headers: this.headers})
       .then(res => res.text())
       .then(body => JSON.parse(body))
@@ -52,6 +54,7 @@ class MackerelClient {
   getHosts () {
     let urlObj = clone(this.origin)
     urlObj.pathname = '/api/v0/hosts'
+
     return fetch(url.format(urlObj), {headers: this.headers})
       .then(res => res.text())
       .then(body => JSON.parse(body))
@@ -64,7 +67,7 @@ class MackerelClient {
    */
   getHostMetricNames (hostId) {
     let urlObj = clone(this.origin)
-    urlObj.pathname = '/api/v0/hosts/' + hostId + '/metric-names'
+    urlObj.pathname = util.format('/api/v0/hosts/%s/metric-names', hostId)
 
     return fetch(url.format(urlObj), {headers: this.headers})
       .then(res => res.text())
@@ -81,7 +84,7 @@ class MackerelClient {
    */
   getHostMetrics (hostId, name, from, to) {
     let urlObj = clone(this.origin)
-    urlObj.pathname = '/api/v0/hosts/' + hostId + '/metrics'
+    urlObj.pathname = util.format('/api/v0/hosts/%s/metrics', hostId)
     urlObj.query = {
       name: name,
       from: from,
@@ -117,7 +120,7 @@ class MackerelClient {
     let urlObj = clone(this.origin)
     urlObj.pathname = '/api/v0/tsdb/latest'
 
-    return fetch(url.format(urlObj) + '?' + queryStr, {headers: this.headers})
+    return fetch(util.format('%s?%s', url.format(urlObj), queryStr), {headers: this.headers})
       .then(res => res.text())
       .then(body => JSON.parse(body))
       .then(json => json.tsdbLatest)
