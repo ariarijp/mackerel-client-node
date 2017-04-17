@@ -46,6 +46,11 @@ test('getLatestMetrics', () => {
   })
 })
 
+test('getAlerts', () => {
+  return client.getAlerts()
+  .then(alerts => expect(alerts).toBeTruthy())
+})
+
 test('getUsers', () => {
   return client.getUsers()
   .then(users => expect(users).toBeTruthy())

@@ -142,6 +142,19 @@ class MackerelClient {
   /**
    * @return {Promise}
    */
+  getAlerts () {
+    let urlObj = clone(this.origin)
+    urlObj.pathname = '/api/v0/alerts'
+
+    return fetch(url.format(urlObj), {headers: this.headers})
+      .then(res => res.text())
+      .then(body => JSON.parse(body))
+      .then(json => json.alerts)
+  }
+
+  /**
+   * @return {Promise}
+   */
   getOrganization () {
     let urlObj = clone(this.origin)
     urlObj.pathname = '/api/v0/org'
